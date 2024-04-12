@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Declara el conjunto de caracteres -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Incluye los archivos de script y hoja de estilos -->
+    <script type="text/javascript" src="Cola.js"></script>
+    <script type="text/javascript" src="Pila.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Define el título de la página -->
+    <title>Pokemon -1/-2</title>
+</head>
+<body onload="Show()">
+    <!-- Plantilla para la representación visual del Pokémon despues de ser llamado por la api gracias a la funcion show() -->
+    <template id="PokemonTemp">
+        <div class="tarjeta">
+            <img src="" alt="">
+            <h2 class="titulo"></h2>
+            <p class="pie"></p>
+        </div>
+    </template>
+
+    <!-- Se agregan Pokémon -->
+    <div class="inicio">
+        <h3 style="font-family: monospace;">
+            Escoge 3 Pokémon para la pelea
+            <br>
+            <input type="text" placeholder="Nombre Pokémon" id="BuscarPokemon">
+            <br>
+            <button id="Buscar">Agregar a Mi Equipo</button>
+            <br>
+            <button id="agregarRival">Aleatorio al Equipo Rocket</button>
+        </h3>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="contenedor">
+        <!-- Sección para mostrar el equipo del jugador -->
+        <div class="MiTarjeta" id="miEquipo">
+            <h1 class="Titulasos">Mi equipo</h1>
+        </div>
+
+        <!-- Sección de botón para iniciar la pelea -->
+        <div>
+            <div>
+                <button id="pelea"><img src="VS.png" alt="Boton"></button>
+            </div>
+        </div>
+
+        <!-- Sección para mostrar el equipo del Equipo Rocket -->
+        <div class="TarjetaRival" id="equipoRival">
+            <h1 class="Titulasos">Equipo Rocket</h1>
+        </div>
+    </div>
+</body>
+</html>

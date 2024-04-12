@@ -1,0 +1,109 @@
+/* Estilos generales del cuerpo del documento HTML */
+body {
+  /* Establece la imagen de fondo, no se repite y cubre todo el cuerpo */
+  background-image: url('Pokelofi.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Estilos para la sección de inicio */
+.inicio {
+  /* Estilos de fuente y dimensiones */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 50%;
+  height: 50%; /* Mismo valor que el ancho para que sea un círculo perfecto */
+  text-align: center;
+  padding: 5px;
+  border-radius: 50%; /* Se establece el radio de la esquina al 50% para hacer un círculo */
+  background-color: rgb(108, 22, 22);
+  box-shadow: 2px 1px 15px 0px rgb(255, 255, 255); /* Sombra */
+  margin: auto; /* Centra el elemento horizontalmente */
+}
+
+/* Estilos para las tarjetas que contienen información de Pokémon */
+.tarjeta {
+  /* Estilos flexibles para alinear elementos */
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  width: 400px; /* Ancho fijo de la tarjeta */
+  border-radius: 15px; /* Borde redondeado */
+  font-family: sans-serif;
+  background-color: rgb(87, 112, 0); /* Color de fondo */
+}
+
+/* Estilos para el título dentro de las tarjetas */
+.titulo {
+  font-size: 24px; /* Tamaño del texto */
+  text-align: center; /* Alineación del texto */
+}
+
+/* Estilos para el pie de las tarjetas */
+.pie {
+  border-radius: 0 0 15px 15px; /* Borde redondeado en la parte inferior */
+  padding: 5px; /* Espaciado interno */
+  text-align: center; /* Alineación del texto */
+}
+
+/* Estilos para las tarjetas del Equipo Rocket */
+.tarjetaB {
+  /* Estilos flexibles para alinear elementos */
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  width: 400px; /* Ancho fijo de la tarjeta */
+  border-radius: 15px; /* Borde redondeado */
+  font-family: sans-serif;
+  background-color: rgb(65, 105, 225); /* Color de fondo */
+}
+
+/* Estilos para el contenedor principal */
+.contenedor {
+  /* Estilos flexibles para distribuir el espacio entre elementos */
+  display: flex;
+  justify-content: space-between;
+  position: relative; /* Posición relativa para manipular la superposición */
+  z-index: 1; /* Índice de apilamiento */
+}
+
+/* Estilos para el botón de pelea */
+#pelea {
+  border: 0px; /* Sin borde */
+  background-color: transparent; /* Fondo transparente */
+  position: relative; /* Posición relativa */
+  z-index: 2; /* Índice de apilamiento superior */
+  margin-top: 120px; /* Margen superior */
+}
+
+/* Estilos para los títulos */
+.Titulasos {
+  color: aliceblue; /* Color del texto */
+  font-family: 'Times New Roman', Times, serif; /* Familia de fuente */
+}
+
+/* Estilos para el campo de búsqueda de Pokémon */
+#BuscarPokemon {
+  background-color: darkkhaki; /* Color de fondo */
+  border: 0px; /* Sin borde */
+  width: 300px; /* Ancho fijo */
+  text-align: center; /* Alineación del texto */
+}
+
+/* Estilos para el botón de búsqueda */
+#Buscar {
+  background-color: #db2777; /* Color de fondo */
+  border: 0px; /* Sin borde */
+  width: 200px; /* Ancho fijo */
+  text-align: center; /* Alineación del texto */
+}
+
+/* Estilos para el botón de agregar al Equipo Rocket */
+#agregarRival {
+  background-color: #db2777; /* Color de fondo */
+  border: 0px; /* Sin borde */
+  width: 200px; /* Ancho fijo */
+  text-align: center; /* Alineación del texto */
+}
+
+
+
