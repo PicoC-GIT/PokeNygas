@@ -76,6 +76,7 @@ function determinarColorTipo(tipos) {
         "flying": "white",
         "fighting": "#66CCFF",
         "poison": "#9900CC",
+<<<<<<< Updated upstream
         "ground":"#CC9933",
         "rock":"#999999",
         "psychic":"#CC33CC",
@@ -86,6 +87,18 @@ function determinarColorTipo(tipos) {
         "Dragon":"#CC9933",
         "Dark":"#333366",
         "Fairy":"#FF66CC"
+=======
+        "ground": "#CC9933",
+        "rock": "#999999",
+        "psychic": "#CC33CC",
+        "ice": "#66CCFF",
+        "bug": "#66FF33",
+        "ghost": "#999999",
+        "Steel": "#CCCCCC",
+        "Dragon": "#CC9933",
+        "Dark": "#333366",
+        "Fairy": "#FF66CC"
+>>>>>>> Stashed changes
     };
 
     //solo toma el primer tipo del Pokémon
