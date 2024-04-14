@@ -28,7 +28,7 @@ async function buscaPokemon(nombrePokemon) {
         nombre: informacion.name,
         imagen: informacion.sprites.front_default,
         danio: informacion.stats.find(stat => stat.stat.name === 'attack').base_stat,
-        tipos: informacion.types.map(type => type.type.name) 
+        tipos: informacion.types.map(type => type.type.name)
     };
 
     return pokemon;
@@ -76,16 +76,16 @@ function determinarColorTipo(tipos) {
         "flying": "white",
         "fighting": "#66CCFF",
         "poison": "#9900CC",
-        "ground":"#CC9933",
-        "rock":"#999999",
-        "psychic":"#CC33CC",
-        "ice":"#66CCFF",
-        "bug":"	#66FF33",
-        "ghost":"#999999",
-        "Steel":"#CCCCCC",
-        "Dragon":"#CC9933",
-        "Dark":"#333366",
-        "Fairy":"#FF66CC"
+        "ground": "#CC9933",
+        "rock": "#999999",
+        "psychic": "#CC33CC",
+        "ice": "#66CCFF",
+        "bug": "	#66FF33",
+        "ghost": "#999999",
+        "Steel": "#CCCCCC",
+        "Dragon": "#CC9933",
+        "Dark": "#333366",
+        "Fairy": "#FF66CC"
     };
 
     //solo toma el primer tipo del Pokémon
@@ -180,12 +180,14 @@ function pelea() {
     alert("Resultados de las batallas:\n\n" + resultadosBatallas);
 
     // Si uno de los equipos está vacío, determinar al ganador y mostrar la alerta
-    if (MyEquipo.Size() == 0 && EquipoRocket.Size() > 0) {
-        // Determinar al ganador de la competencia
-        alert("¡El Equipo Rocket ha ganado la competencia!");
-    } else if (MyEquipo.Size() > 0 && EquipoRocket.Size() == 0) {
-        alert("¡Felicidades, has ganado la competencia!");
-    } else {
-        alert("¡Ha habido un empate!");
+    if (MyEquipo.Size() == 0 || EquipoRocket.Size() == 0) {
+        if (MyEquipo.Size() == 0 && EquipoRocket.Size() > 0) {
+            // Determinar al ganador de la competencia
+            alert("¡El Equipo Rocket ha ganado la competencia!");
+        } else if (MyEquipo.Size() > 0 && EquipoRocket.Size() == 0) {
+            alert("¡Felicidades, has ganado la competencia!");
+        } else {
+            alert("¡Ha habido un empate!");
+        }
     }
 }
