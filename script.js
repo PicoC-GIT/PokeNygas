@@ -128,7 +128,7 @@ function pelea() {
             // Eliminar a ambos Pokémon
             MyEquipo.Pop();
             EquipoRocket.Dequeue();
-            var pokemonDerrotado = document.getElementById('pokemon' + miPokemon.nombre);
+            var pokemonDerrotado = document.getElementById('pokemon1' + miPokemon.nombre);
             if (pokemonDerrotado) {
                 pokemonDerrotado.remove();
             }
@@ -143,12 +143,14 @@ function pelea() {
     alert("Resultados de las batallas:\n\n" + resultadosBatallas);
 
     // Si uno de los equipos está vacío, determinar al ganador y mostrar la alerta
-    if (MyEquipo.Size() == 0 && EquipoRocket.Size() > 0) {
-        // Determinar al ganador de la competencia
-        alert("¡El Equipo Rocket ha ganado la competencia!");
-    } else if (MyEquipo.Size() > 0 && EquipoRocket.Size() == 0) {
-        alert("¡Felicidades, has ganado la competencia!");
-    } else {
-        alert("¡Ha habido un empate!");
+    if (MyEquipo.Size() == 0 || EquipoRocket.Size() == 0) {
+        if (MyEquipo.Size() == 0 && EquipoRocket.Size() > 0) {
+            // Determinar al ganador de la competencia
+            alert("¡El Equipo Rocket ha ganado la competencia!");
+        } else if (MyEquipo.Size() > 0 && EquipoRocket.Size() == 0) {
+            alert("¡Felicidades, has ganado la competencia!");
+        } else {
+            alert("¡Ha habido un empate!");
+        }
     }
 }
