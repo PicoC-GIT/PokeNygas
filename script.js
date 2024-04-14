@@ -27,11 +27,13 @@ async function buscaPokemon(nombrePokemon) {
     var pokemon = {
         nombre: informacion.name,
         imagen: informacion.sprites.front_default,
-        danio: informacion.stats.find(stat => stat.stat.name === 'attack').base_stat
+        danio: informacion.stats.find(stat => stat.stat.name === 'attack').base_stat,
+        tipos: informacion.types.map(type => type.type.name) 
     };
 
     return pokemon;
 }
+
 
 // Método para agregar un Pokémon al equipo del jugador
 async function obtenerPokemonEquipo(nombrePokemon) {
@@ -57,8 +59,43 @@ function mostrarPokemonEnMyEquipo(pokemon) {
     pokemonDiv.querySelector('.titulo').textContent = pokemon.nombre.toUpperCase();
     pokemonDiv.querySelector('.pie').textContent = "Daño:" + pokemon.danio;
 
+    // Cambiar el color de fondo según el tipo del Pokémon
+    pokemonDiv.querySelector('.tarjeta').style.backgroundColor = determinarColorTipo(pokemon.tipos);
+
     MisPokemones.appendChild(pokemonDiv);
 }
+
+function determinarColorTipo(tipos) {
+    // Define un objeto con los colores correspondientes a cada tipo
+    const colores = {
+        "normal": "lightgray",
+        "fire": "orangered",
+        "water": "#3300CC",
+        "electric": "yellow",
+        "grass": "green",
+        "flying": "white",
+        "fighting": "#66CCFF",
+        "poison": "#9900CC",
+        "ground":"#CC9933",
+        "rock":"#999999",
+        "psychic":"#CC33CC",
+        "ice":"#66CCFF",
+        "bug":"	#66FF33",
+        "ghost":"#999999",
+        "Steel":"#CCCCCC",
+        "Dragon":"#CC9933",
+        "Dark":"#333366",
+        "Fairy":"#FF66CC"
+    };
+
+    //solo toma el primer tipo del Pokémon
+    const tipo = tipos[0].toLowerCase();
+
+    // Si el tipo está definido en el objeto de colores, devolver el color correspondiente
+    // De lo contrario, devolver un color por defecto
+    return colores[tipo] || "gray";
+}
+
 
 // Método para agregar un Pokémon aleatorio al equipo del Equipo Rocket
 async function obtenerPokemonAleatorio() {
@@ -81,7 +118,7 @@ async function obtenerPokemonAleatorio() {
 function mostrarPokemonEnEquipoRocket(pokemon) {
     var PokemonesRival = document.getElementById("equipoRival");
 
-    let template = document.getElementById('PokemonTemp');
+    let template = document.getElementById('PokemonTempE');
     let pokemonDiv = document.importNode(template.content, true);
 
     pokemonDiv.firstElementChild.id = 'pokemon2' + pokemon.nombre;
