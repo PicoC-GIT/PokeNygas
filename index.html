@@ -16,6 +16,9 @@
 </head>
 <body onload="Show()">
     <!-- Plantilla para la representación visual del Pokémon despues de ser llamado por la api gracias a la funcion show() -->
+    <audio id="musica" autoplay loop>
+        <source src="Jimmy_Mi_Carcachita_2007.mp3" type="audio/mpeg">
+    </audio>
     <template id="PokemonTemp">
         <div class="tarjeta">
             <img src="" alt="">
@@ -23,7 +26,7 @@
             <p class="pie"></p>
         </div>
     </template>
-    
+
     <template id="PokemonTempE">
         <div class="tarjetaB">
             <img src="" alt="">
@@ -64,5 +67,8 @@
             <h1 class="Titulasos">Equipo Rocket</h1>
         </div>
     </div>
+    <audio id="musicaPelea" loop>
+        <source src="Red_&_Blue.mp3" type="audio/mpeg">
+    </audio>
 </body>
 </html>

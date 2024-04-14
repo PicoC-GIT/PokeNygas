@@ -1,3 +1,5 @@
+//El programa es un simulador de batallas pokemon con el uso de la poke api y los codigos de pilas y colas vistos en clase. En el siguiente codigo mejoramos el programa original con multiples cambios que vuelven la experiencia de la batalla mas agradable y inmersiva
+
 var MyEquipo = new Pila(); // Representa el equipo del jugador
 var EquipoRocket = new Cola(); // Representa el equipo del Equipo Rocket
 
@@ -132,6 +134,11 @@ function mostrarPokemonEnEquipoRocket(pokemon) {
 
 // Método para simular una pelea entre los equipos
 function pelea() {
+    pausarMusica(); // Pausar la música al comenzar la pelea
+
+    var musicaPelea = document.getElementById("musicaPelea");
+    musicaPelea.play(); // Reproducir la segunda canción
+
     var resultadosBatallas = ""; // Variable para almacenar los resultados de las batallas
 
     // Comprobar que ambos equipos tienen al menos un Pokémon
@@ -191,3 +198,9 @@ function pelea() {
         }
     }
 }
+
+function pausarMusica() {
+    var musica = document.getElementById("musica");
+    musica.pause();
+}
+
