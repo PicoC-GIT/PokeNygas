@@ -4,13 +4,13 @@ var EquipoRocket = new Cola(); // Representa el equipo del Equipo Rocket
 // Función principal que configura los eventos de los botones
 function Show() {
     // Agrega un evento al botón "Buscar" para agregar un Pokémon al equipo del jugador
-    document.getElementById("Buscar").addEventListener("click", function() {
+    document.getElementById("Buscar").addEventListener("click", function () {
         obtenerPokemonEquipo(document.getElementById("BuscarPokemon").value);
     });
 
     // Agrega un evento al botón "agregarRival" para agregar un Pokémon aleatorio al equipo del Equipo Rocket
     document.getElementById("agregarRival").addEventListener("click", obtenerPokemonAleatorio);
-    
+
     // Agrega un evento al botón "pelea" para iniciar una pelea entre los equipos
     document.getElementById("pelea").addEventListener("click", pelea);
 }
@@ -51,6 +51,7 @@ function mostrarPokemonEnMyEquipo(pokemon) {
     let template = document.getElementById('PokemonTemp');
     let pokemonDiv = document.importNode(template.content, true);
 
+    pokemonDiv.firstElementChild.id = 'pokemon1' + pokemon.nombre;
     pokemonDiv.querySelector('img').src = pokemon.imagen;
     pokemonDiv.querySelector('img').alt = pokemon.nombre;
     pokemonDiv.querySelector('.titulo').textContent = pokemon.nombre.toUpperCase();
@@ -83,6 +84,7 @@ function mostrarPokemonEnEquipoRocket(pokemon) {
     let template = document.getElementById('PokemonTemp');
     let pokemonDiv = document.importNode(template.content, true);
 
+    pokemonDiv.firstElementChild.id = 'pokemon2' + pokemon.nombre;
     pokemonDiv.querySelector('img').src = pokemon.imagen;
     pokemonDiv.querySelector('img').alt = pokemon.nombre;
     pokemonDiv.querySelector('.titulo').textContent = pokemon.nombre.toUpperCase();
@@ -94,39 +96,59 @@ function mostrarPokemonEnEquipoRocket(pokemon) {
 // Método para simular una pelea entre los equipos
 function pelea() {
     var resultadosBatallas = ""; // Variable para almacenar los resultados de las batallas
-    
-    // Realizar batallas hasta que uno de los equipos se quede sin Pokémon
-    while (MyEquipo.Size() > 0 && EquipoRocket.Size() > 0) {
+
+    // Comprobar que ambos equipos tienen al menos un Pokémon
+    if (MyEquipo.Size() > 0 && EquipoRocket.Size() > 0) {
         // Obtener los primeros Pokémon de cada equipo
         var miPokemon = MyEquipo.Peek();
         var pokemonEquipoRocket = EquipoRocket.Peek();
-        
+
         // Comparar los puntos de ataque de los Pokémon
         if (miPokemon.danio > pokemonEquipoRocket.danio) {
             // Si el Pokémon del jugador tiene más puntos de ataque
             resultadosBatallas += "Tu " + miPokemon.nombre + " venció a " + pokemonEquipoRocket.nombre + ".\n";
             // Eliminar al Pokémon del Equipo Rocket
             EquipoRocket.Dequeue();
+            var pokemonDerrotado = document.getElementById('pokemon2' + pokemonEquipoRocket.nombre);
+            if (pokemonDerrotado) {
+                pokemonDerrotado.remove();
+            }
         } else if (miPokemon.danio < pokemonEquipoRocket.danio) {
             // Si el Pokémon del Equipo Rocket tiene más puntos de ataque
             resultadosBatallas += "Tu " + miPokemon.nombre + " fue vencido por " + pokemonEquipoRocket.nombre + ".\n";
             // Eliminar al Pokémon del jugador
             MyEquipo.Pop();
+            var pokemonDerrotado = document.getElementById('pokemon1' + miPokemon.nombre);
+            if (pokemonDerrotado) {
+                pokemonDerrotado.remove();
+            }
         } else {
             // En caso de empate
             resultadosBatallas += "Tu " + miPokemon.nombre + " tuvo un empate con " + pokemonEquipoRocket.nombre + ".\n";
             // Eliminar a ambos Pokémon
             MyEquipo.Pop();
             EquipoRocket.Dequeue();
+            var pokemonDerrotado = document.getElementById('pokemon' + miPokemon.nombre);
+            if (pokemonDerrotado) {
+                pokemonDerrotado.remove();
+            }
+            var pokemonDerrotado2 = document.getElementById('pokemon2' + pokemonEquipoRocket.nombre);
+            if (pokemonDerrotado2) {
+                pokemonDerrotado2.remove();
+            }
         }
     }
-
-    // Determinar al ganador de la competencia
-    var ganador = MyEquipo.Size() > 0 ? "Tu equipo" : "El Equipo Rocket";
 
     // Mostrar los resultados de las batallas en el primer alert
     alert("Resultados de las batallas:\n\n" + resultadosBatallas);
 
-    // Anunciar al ganador de la competencia en el segundo alert
-    alert("El ganador de la competencia es: " + ganador);
+    // Si uno de los equipos está vacío, determinar al ganador y mostrar la alerta
+    if (MyEquipo.Size() == 0 && EquipoRocket.Size() > 0) {
+        // Determinar al ganador de la competencia
+        alert("¡El Equipo Rocket ha ganado la competencia!");
+    } else if (MyEquipo.Size() > 0 && EquipoRocket.Size() == 0) {
+        alert("¡Felicidades, has ganado la competencia!");
+    } else {
+        alert("¡Ha habido un empate!");
+    }
 }
