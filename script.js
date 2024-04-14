@@ -93,25 +93,40 @@ function mostrarPokemonEnEquipoRocket(pokemon) {
 
 // Método para simular una pelea entre los equipos
 function pelea() {
-    var danioMyEquipo = 0;
-    var danioEquipoRocket = 0;
-
-    // Calcula el total de daño de los Pokémon en el equipo del jugador
-    for (let i = 0; i < MyEquipo.Size(); i++) {
-        danioMyEquipo += MyEquipo.Peek(i).danio;
+    var resultadosBatallas = ""; // Variable para almacenar los resultados de las batallas
+    
+    // Realizar batallas hasta que uno de los equipos se quede sin Pokémon
+    while (MyEquipo.Size() > 0 && EquipoRocket.Size() > 0) {
+        // Obtener los primeros Pokémon de cada equipo
+        var miPokemon = MyEquipo.Peek();
+        var pokemonEquipoRocket = EquipoRocket.Peek();
+        
+        // Comparar los puntos de ataque de los Pokémon
+        if (miPokemon.danio > pokemonEquipoRocket.danio) {
+            // Si el Pokémon del jugador tiene más puntos de ataque
+            resultadosBatallas += "Tu " + miPokemon.nombre + " venció a " + pokemonEquipoRocket.nombre + ".\n";
+            // Eliminar al Pokémon del Equipo Rocket
+            EquipoRocket.Dequeue();
+        } else if (miPokemon.danio < pokemonEquipoRocket.danio) {
+            // Si el Pokémon del Equipo Rocket tiene más puntos de ataque
+            resultadosBatallas += "Tu " + miPokemon.nombre + " fue vencido por " + pokemonEquipoRocket.nombre + ".\n";
+            // Eliminar al Pokémon del jugador
+            MyEquipo.Pop();
+        } else {
+            // En caso de empate
+            resultadosBatallas += "Tu " + miPokemon.nombre + " tuvo un empate con " + pokemonEquipoRocket.nombre + ".\n";
+            // Eliminar a ambos Pokémon
+            MyEquipo.Pop();
+            EquipoRocket.Dequeue();
+        }
     }
 
-    // Calcula el total de daño de los Pokémon en el equipo del Equipo Rocket
-    for (let i = 0; i < EquipoRocket.Size(); i++) {
-        danioEquipoRocket += EquipoRocket.Peek(i).danio;
-    }
+    // Determinar al ganador de la competencia
+    var ganador = MyEquipo.Size() > 0 ? "Tu equipo" : "El Equipo Rocket";
 
-    // Compara los totales de daño para determinar el resultado de la pelea
-    if (danioMyEquipo > danioEquipoRocket) {
-        alert("Mi equipo ganó la batalla.");
-    } else if (danioMyEquipo < danioEquipoRocket) {
-        alert("El Equipo Rocket ha ganado.");
-    } else {
-        alert("Empate.");
-    }
+    // Mostrar los resultados de las batallas en el primer alert
+    alert("Resultados de las batallas:\n\n" + resultadosBatallas);
+
+    // Anunciar al ganador de la competencia en el segundo alert
+    alert("El ganador de la competencia es: " + ganador);
 }
