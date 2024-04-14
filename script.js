@@ -80,7 +80,7 @@ function determinarColorTipo(tipos) {
         "rock": "#999999",
         "psychic": "#CC33CC",
         "ice": "#66CCFF",
-        "bug": "	#66FF33",
+        "bug": "#66FF33",
         "ghost": "#999999",
         "Steel": "#CCCCCC",
         "Dragon": "#CC9933",
